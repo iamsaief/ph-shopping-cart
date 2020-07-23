@@ -76,6 +76,7 @@ function checkoutPrice(subtotalArr) {
 	total.innerText = totalPrice;
 }
 
+// Show greetings
 const checkoutBtn = document
 	.querySelector(".check-out")
 	.addEventListener("click", () => {
