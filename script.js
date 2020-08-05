@@ -2,7 +2,7 @@ const productPrices = [1219, 59];
 let subtotalPrice = 0;
 let subtotalArr = [...productPrices];
 
-// Event Bubbling to capture both the cart-items
+// Handle click on cart-items
 document
 	.querySelectorAll(".cart-item:not(.cart-checkout)")
 	.forEach((item, index) => {
@@ -10,6 +10,8 @@ document
 			const { target, currentTarget } = e;
 			const price = currentTarget.querySelector(".item-price");
 			const unit = currentTarget.querySelector(".item-unit");
+			const msg =
+				"Are you sure ? 😲 Press Cancel to leave it, OK to remove.";
 
 			if (
 				target.classList.contains("btn-plus") ||
@@ -24,20 +26,12 @@ document
 				updatedPrice(unit, price, productPrices[index], "-", index);
 			}
 			if (target.classList.contains("remove-item")) {
-				console.log(item);
-
-				if (
-					window.confirm(
-						`Are you sure ? 😲 Press Cancel to leave it, OK to remove.`
-					)
-				) {
+				if (window.confirm(msg)) {
 					item.style.display = "none";
 
 					updatedPrice(unit, price, productPrices[index], "-", index);
 				}
 			}
-
-			console.log(target);
 		});
 	});
 
